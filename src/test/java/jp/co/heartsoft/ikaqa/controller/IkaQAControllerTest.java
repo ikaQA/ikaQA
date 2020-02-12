@@ -18,7 +18,7 @@ class IkaQAControllerTest {
 
     @Test
     public void executeSlashCommand() {
-        assertEquals("call postMessage", ikaQAController.executeSlashCommand());
+        assertEquals("call postMessageX", ikaQAController.executeSlashCommand());
     }
 
 
