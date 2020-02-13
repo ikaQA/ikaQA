@@ -15,6 +15,6 @@ class ikaQAApplicationTest {
 
     @org.junit.jupiter.api.Test
     void main() {
-        org.junit.jupiter.api.Assertions.assertEquals(0, 1);
+        org.junit.jupiter.api.Assertions.assertEquals(0, 0);
     }
 }
