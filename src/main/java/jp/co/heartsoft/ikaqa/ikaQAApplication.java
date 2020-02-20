@@ -1,4 +1,4 @@
-package jp.co.heartsoft.ikaqa.controller;
+package jp.co.heartsoft.ikaqa;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
