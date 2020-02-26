@@ -1,13 +1,15 @@
 package jp.co.heartsoft.ikaqa.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
 
-@RestController
+@Controller
+@RequestMapping("/")
 public class IkaQAController {
-    @GetMapping("/executeSlashCommand")
-    public String executeSlashCommand() {
-        System.out.println("execute SlashCommand");
-        return "call postMessage";
+
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public @ResponseBody
+    String greeting() {
+        return "Hello World";
     }
 }
