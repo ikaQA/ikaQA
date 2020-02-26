@@ -1,6 +1,10 @@
 package jp.co.heartsoft.ikaqa.controller;
 
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class IkaQAController {
@@ -13,6 +17,9 @@ public class IkaQAController {
     @PostMapping("/ikaqaDebug")
     public @ResponseBody String ikaqaDebug(@RequestBody String requestBody) {
         System.out.println("requestBody = " + requestBody);
-        return "ikaqaDebug(" + requestBody + ")";
+
+        String responseBody = "ikaqaDebug(" + requestBody + ")";
+        System.out.println("responseBody = " + responseBody);
+        return responseBody;
     }
 }

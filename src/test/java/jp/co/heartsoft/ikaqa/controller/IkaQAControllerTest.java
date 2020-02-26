@@ -22,7 +22,7 @@ class IkaQAControllerTest {
     }
 
     @Test
-    void textIkaqaDebug() {
+    void testIkaqaDebug() {
         assertEquals("ikaqaDebug(test)", ikaQAController.ikaqaDebug("test"));
     }
 }
