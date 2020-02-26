@@ -5,18 +5,16 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.ArgumentCaptor;
+import org.mockito.Captor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
-@ExtendWith(SpringExtension.class)
 @SpringBootTest
 public class IkaQAControllerTest {
     @InjectMocks
@@ -24,6 +22,14 @@ public class IkaQAControllerTest {
 
     @Mock
     private CalcService calcService;
+
+    @Captor
+    ArgumentCaptor<Integer> aCaptor;
+
+    @Captor
+    ArgumentCaptor<Integer> bCaptor;
+
+
     @BeforeEach
     void setUp() {
     }
@@ -35,10 +41,15 @@ public class IkaQAControllerTest {
     @Test
     public void executeSlashCommand() {
 
-        when(this.calcService.add(1,2)).thenReturn(3);
+        when(this.calcService.add(1,2)).thenReturn(4);
 
-        String result = this.ikaQAController.executeSlashCommand();
-        assertEquals("call postMessage", result);
+        int result = this.ikaQAController.executeSlashCommand();
+        verify(this.calcService, times(1)).add(aCaptor.capture(),
+                bCaptor.capture());
+
+        assertEquals(1, aCaptor.getValue());
+        assertEquals(2, bCaptor.getValue());
+        assertEquals(4, result);
     }
 
 
