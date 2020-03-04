@@ -12,8 +12,8 @@ public class ToJsonSample {
     public static void main(String[] args) {
         Gson gson = new Gson();
 
-        User user1 = new User("bob@jmail.com", null);       //fullnameにnullをセット
-        User user2 = new User("jeff@jmail.com", "Jeff");
+        User user1 = new User("01", null);       //fullnameにnullをセット
+        User user2 = new User("02", "Jeff");
         List<User> userList = new ArrayList<>();
         userList.add(user1);
         userList.add(user2);

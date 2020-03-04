@@ -17,8 +17,8 @@ public class FromJsonSample {
         System.out.println("String: " + str);
 
         // JSONからJavaオブジェクトへの変換
-        User user = gson.fromJson("{\"email\":\"bob@jmail.com\",\"fullname\":\"Bob\"}", User.class);
-        System.out.println("User: " + user.email + " / " + user.fullname);
+        User user = gson.fromJson("{\"userId\":\"01\",\"fullname\":\"Bob\"}", User.class);
+        System.out.println("User: " + user.userId + " / " + user.fullname);
 
         // JSONから配列への変換
         int[] array = gson.fromJson("[1, 2, 3]", int[].class);
@@ -30,7 +30,7 @@ public class FromJsonSample {
 
         // JSONからフィールドにListを含むJavaオブジェクトへの変換
         String jsonStr = "{\"title\":\"投稿タイトル\",\"content\":\"本文本文本文\","
-                + "\"author\":{\"email\":\"bob@jmail.com\",\"fullname\":\"Bob\"},"
+                + "\"author\":{\"userId\":\"01\",\"fullname\":\"Bob\"},"
                 + "\"comments\":[{\"author\":\"Tom\",\"content\":\"コメント本文\"}]"
                 + "}";
         Post post = gson.fromJson(jsonStr, Post.class);

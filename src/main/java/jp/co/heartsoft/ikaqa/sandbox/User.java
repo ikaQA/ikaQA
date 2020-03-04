@@ -1,11 +1,11 @@
 package jp.co.heartsoft.ikaqa.sandbox;
 
 public class User {
-    public String email;
+    public String userId;
     public String fullname;
 
-    public User(String email, String fullname) {
-        this.email = email;
+    public User(String userId, String fullname) {
+        this.userId = userId;
         this.fullname = fullname;
     }
 }
