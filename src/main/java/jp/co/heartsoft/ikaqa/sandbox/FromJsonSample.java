@@ -29,13 +29,13 @@ public class FromJsonSample {
         System.out.println("List: " + list.get(0) + ",　" + list.get(1) + ",　" + list.get(2));
 
         // JSONからフィールドにListを含むJavaオブジェクトへの変換
-        String jsonStr = "{\"title\":\"投稿タイトル\",\"content\":\"本文本文本文\","
+        String jsonStr = "{\"title\":\"質問があります。\",\"content\":\"パンが食べたい\","
                 + "\"author\":{\"userId\":\"01\",\"fullname\":\"Bob\"},"
-                + "\"comments\":[{\"author\":\"Tom\",\"content\":\"コメント本文\"}]"
+                + "\"comments\":[{\"author\":\"Tom\",\"content\":\"バナナが食べたい。\"}]"
                 + "}";
-        Post post = gson.fromJson(jsonStr, Post.class);
-        System.out.println("Post: タイトル=" + post.title
-                + ", 著者=" + post.author.fullname
-                + ", コメント件数=" + post.comments.size());
+        Question question = gson.fromJson(jsonStr, Question.class);
+        System.out.println("Question: タイトル=" + question.title
+                + ", 著者=" + question.author.fullname
+                + ", コメント件数=" + question.comments.size());
     }
 }
