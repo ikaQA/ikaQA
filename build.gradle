@@ -15,10 +15,15 @@ repositories {
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    // コンバータ(Gson)の定義
+    implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
     testCompile 'com.jayway.jsonpath:json-path'
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+
     }
+    //JUnit5
+    testImplementation "org.junit.jupiter:junit-jupiter:5.5.2"
 }
 
 test {
