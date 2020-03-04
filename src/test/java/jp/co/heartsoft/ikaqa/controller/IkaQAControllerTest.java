@@ -41,15 +41,15 @@ public class IkaQAControllerTest {
     @Test
     public void executeSlashCommand() {
 
-        when(this.calcService.add(1,2)).thenReturn(4);
+        when(this.calcService.add(anyInt(),anyInt())).thenReturn(5);
 
         int result = this.ikaQAController.executeSlashCommand();
         verify(this.calcService, times(1)).add(aCaptor.capture(),
                 bCaptor.capture());
 
         assertEquals(1, aCaptor.getValue());
-        assertEquals(2, bCaptor.getValue());
-        assertEquals(4, result);
+        assertEquals(3, bCaptor.getValue());
+        assertEquals(5, result);
     }
 
 

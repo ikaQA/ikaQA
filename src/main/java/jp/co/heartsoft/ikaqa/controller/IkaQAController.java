@@ -12,9 +12,7 @@ public class IkaQAController {
     private CalcService calcService;
 
     @GetMapping("/executeSlashCommand")
-    public String executeSlashCommand() {
-
-        System.out.println(calcService.add(1,2));
-        return "call postMessage";
+    public int executeSlashCommand() {
+        return calcService.add(1,3);
     }
 }
