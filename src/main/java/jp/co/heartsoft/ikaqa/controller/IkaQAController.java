@@ -1,9 +1,11 @@
 package jp.co.heartsoft.ikaqa.controller;
 
 import jp.co.heartsoft.ikaqa.service.CalcService;
+import jp.co.heartsoft.ikaqa.service.IkaQAHttpRequestService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.io.IOException;
 
 @RestController
 public class IkaQAController {
@@ -11,8 +13,28 @@ public class IkaQAController {
     @Autowired
     private CalcService calcService;
 
-    @GetMapping("/executeSlashCommand")
-    public int executeSlashCommand() {
-        return calcService.add(1,3);
+    @Autowired
+    private IkaQAHttpRequestService ikaQAHttpRequestService;
+
+    @PostMapping("/postMessage")
+    public @ResponseBody String postMessage(@RequestParam("text") String text) {
+        try {
+            ikaQAHttpRequestService.postMessage(text);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
+
+    @PostMapping("/postAnswer")
+    public @ResponseBody String postAnswer(@RequestParam("text") String text) {
+
+
+        try {
+            ikaQAHttpRequestService.postMessage(text);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return "";
     }
 }
