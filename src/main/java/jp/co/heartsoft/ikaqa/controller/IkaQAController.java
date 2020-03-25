@@ -27,11 +27,13 @@ public class IkaQAController {
     }
 
     @PostMapping("/postAnswer")
-    public @ResponseBody String postAnswer(@RequestParam("text") String text) {
-
-
+    public @ResponseBody String postAnswer(@RequestParam("command") String command, @RequestParam("trigger_id") String triggerId) {
         try {
-            ikaQAHttpRequestService.postMessage(text);
+            if("/ikaqa_answer".equals(command)){
+                ikaQAHttpRequestService.openDialog(triggerId);
+            }
+
+            //TODO ダイアログ入力後の処理を記載
         } catch (IOException e) {
             e.printStackTrace();
         }
