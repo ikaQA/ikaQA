@@ -27,6 +27,7 @@ public class IkaQAHttpRequestService {
     private String DIALOG_OPEN_URL = "https://slack.com/api/dialog.open";
 
     public void postMessage(String message) throws IOException {
+        System.out.println("postMessage");
         Map<String, String> formParamMap = new HashMap<>();
         formParamMap.put("token", TOKEN);
         formParamMap.put("channel", CHANNEL_ID);
@@ -37,6 +38,7 @@ public class IkaQAHttpRequestService {
     }
 
     public void openDialog(String triggerId) throws IOException {
+        System.out.println("openDialog");
         Gson gson = new Gson();
         Map<String, String> formParamMap = new HashMap<>();
         formParamMap.put("token", TOKEN);
@@ -46,6 +48,7 @@ public class IkaQAHttpRequestService {
     }
 
     public void postAnswer(SlackDialogSubmissionBean dialogSubmission, String threadTs) throws IOException {
+        System.out.println("postAnswer");
         Map<String, String> formParamMap = new HashMap<>();
         formParamMap.put("token", TOKEN);
         formParamMap.put("channel", CHANNEL_ID);
@@ -64,6 +67,8 @@ public class IkaQAHttpRequestService {
         RequestBody requestBody = formBuilder.build();
         Request request = new Request.Builder().url(url).post(requestBody).build();
         Response response = client.newCall(request).execute();
+        System.out.println("respocse code:" + response.code());
+        System.out.println("respocse code:" + response.body().string());
         return response;
     }
 
