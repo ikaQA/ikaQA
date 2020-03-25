@@ -5,6 +5,7 @@ import jp.co.heartsoft.ikaqa.bean.SlackDialogBean;
 import jp.co.heartsoft.ikaqa.bean.SlackDialogElementBean;
 import jp.co.heartsoft.ikaqa.bean.SlackDialogSubmissionBean;
 import okhttp3.*;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -16,8 +17,10 @@ import java.util.Map;
 
 @Service
 public class IkaQAHttpRequestService {
-    private String TOKEN = "xoxb-803119221426-956891905701-vubSWDWomKoMIemm5Jqp6AI7";
-    private String CHANNEL_ID = "CPZCX8X28";
+    @Value("${ikaqa.slack.token}")
+    private String TOKEN;
+    @Value("${ikaqa.slack.channel.id}")
+    private String CHANNEL_ID;
     private String USER_NAME = "以下、名無しにかわりましてikaQAがお送りします";
     private String USER_ICON = ":ika:";
     private String POST_MESSAGE_URL = "https://slack.com/api/chat.postMessage";
