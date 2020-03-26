@@ -56,8 +56,17 @@ public class IkaQAHttpRequestService {
         formParamMap.put("token", TOKEN);
         formParamMap.put("channel", CHANNEL_ID);
         formParamMap.put("text", submission.getAnswer());
-        formParamMap.put("username", submission.getUserName()); //TODO 指定がない場合は USER_NAME
-        formParamMap.put("icon_emoji", submission.getUserIcon());//TODO 指定がない場合は USER_ICON
+        String userName = submission.getUserName();
+        if(userName.isEmpty()){
+            userName = USER_NAME;
+        }
+        formParamMap.put("username", userName);
+
+        String userIcon = submission.getUserIcon();
+        if(userIcon.isEmpty()){
+            userIcon = USER_ICON;
+        }
+        formParamMap.put("icon_emoji", userIcon);
 
         String threadTs = null;
         String targetLink = submission.getTargetLink();
