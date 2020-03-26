@@ -43,7 +43,9 @@ public class IkaQAHttpRequestService {
         Map<String, String> formParamMap = new HashMap<>();
         formParamMap.put("token", TOKEN);
         formParamMap.put("trigger_id", triggerId);
-        formParamMap.put("dialog", gson.toJson(createDialog()));
+        String dialogJsonStr = gson.toJson(createDialog());
+        System.out.println("daialog" + dialogJsonStr);
+        formParamMap.put("dialog",dialogJsonStr );
         postHttpRequest(DIALOG_OPEN_URL, formParamMap);
     }
 
@@ -90,33 +92,33 @@ public class IkaQAHttpRequestService {
         list.add(slackDialogElement1);
 
         SlackDialogElementBean slackDialogElement2 = new SlackDialogElementBean();
-        slackDialogElement1.setLabel("回答者の表示名");
-        slackDialogElement1.setName("userName");
-        slackDialogElement1.setType("text");
-        slackDialogElement1.setOptional(true);
-        slackDialogElement1.setHint("入力しない場合は自動で匿名になります");
-        slackDialogElement1.setSubtype(null);
-        slackDialogElement1.setPlaceholder("回答者として表示する名前を入力してください");
+        slackDialogElement2.setLabel("回答者の表示名");
+        slackDialogElement2.setName("userName");
+        slackDialogElement2.setType("text");
+        slackDialogElement2.setOptional(true);
+        slackDialogElement2.setHint("入力しない場合は自動で匿名になります");
+        slackDialogElement2.setSubtype(null);
+        slackDialogElement2.setPlaceholder("回答者として表示する名前を入力してください");
         list.add(slackDialogElement2);
 
         SlackDialogElementBean slackDialogElement3 = new SlackDialogElementBean();
-        slackDialogElement1.setLabel("回答者のアイコン");
-        slackDialogElement1.setName("userIcon");
-        slackDialogElement1.setType("text");
-        slackDialogElement1.setOptional(true);
-        slackDialogElement1.setHint("入力しない場合は自動で匿名アイコンになります");
-        slackDialogElement1.setSubtype(null);
-        slackDialogElement1.setPlaceholder("回答者のアイコンとして表示する絵文字(:slack: など)を入力してください");
+        slackDialogElement3.setLabel("回答者のアイコン");
+        slackDialogElement3.setName("userIcon");
+        slackDialogElement3.setType("text");
+        slackDialogElement3.setOptional(true);
+        slackDialogElement3.setHint("入力しない場合は自動で匿名アイコンになります");
+        slackDialogElement3.setSubtype(null);
+        slackDialogElement3.setPlaceholder("回答者のアイコンとして表示する絵文字(:slack: など)を入力してください");
         list.add(slackDialogElement3);
 
         SlackDialogElementBean slackDialogElement4 = new SlackDialogElementBean();
-        slackDialogElement1.setLabel("回答内容");
-        slackDialogElement1.setName("answer");
-        slackDialogElement1.setType("textarea");
-        slackDialogElement1.setOptional(false);
-        slackDialogElement1.setHint("Slackの書式設定したテキストや絵文字も有効です(プレビュー表示はされません)");
-        slackDialogElement1.setSubtype(null);
-        slackDialogElement1.setPlaceholder("回答内容を入力してください");
+        slackDialogElement4.setLabel("回答内容");
+        slackDialogElement4.setName("answer");
+        slackDialogElement4.setType("textarea");
+        slackDialogElement4.setOptional(false);
+        slackDialogElement4.setHint("Slackの書式設定したテキストや絵文字も有効です(プレビュー表示はされません)");
+        slackDialogElement4.setSubtype(null);
+        slackDialogElement4.setPlaceholder("回答内容を入力してください");
         list.add(slackDialogElement4);
         slackDialog.setElements(list);
         return slackDialog;
