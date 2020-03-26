@@ -43,13 +43,14 @@ public class IkaQAController {
     }
 
     @PostMapping("/postAnswer")
-    public @ResponseBody String postAnswer(@RequestParam("payload") String payload) {
+    public @ResponseBody String postAnswer(@RequestParam("payload") String paramPayload) {
         try {
             Gson gson = new Gson();
-            SlackAnswerPayloadBean Payload = gson.fromJson(payload, SlackAnswerPayloadBean.class);
-            ikaQAHttpRequestService.postAnswer(Payload.getSubmission());
+            SlackAnswerPayloadBean payload = gson.fromJson(paramPayload, SlackAnswerPayloadBean.class);
 
-            //TODO ダイアログ入力後の処理を記載
+            if("dialog_submission".equals(payload.getType()) && "ikaqa_answer_dialog".equals(payload.getCallbackId())){
+                ikaQAHttpRequestService.postAnswer(payload.getSubmission());
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
