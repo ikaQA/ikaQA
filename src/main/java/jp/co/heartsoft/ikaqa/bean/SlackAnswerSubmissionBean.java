@@ -1,9 +1,16 @@
 package jp.co.heartsoft.ikaqa.bean;
 
-public class SlackDialogSubmissionBean {
+import com.google.gson.annotations.SerializedName;
+
+public class SlackAnswerSubmissionBean {
+    @SerializedName("answer")
     private String answer;
+    @SerializedName("userName")
     private String userName;
+    @SerializedName("userIcon")
     private String userIcon;
+    @SerializedName("targetLink")
+    private String targetLink;
 
     public String getAnswer() {
         return answer;
@@ -27,5 +34,13 @@ public class SlackDialogSubmissionBean {
 
     public void setUserIcon(String userIcon) {
         this.userIcon = userIcon;
+    }
+
+    public String getTargetLink() {
+        return targetLink;
+    }
+
+    public void setTargetLink(String targetLink) {
+        this.targetLink = targetLink;
     }
 }

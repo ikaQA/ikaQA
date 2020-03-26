@@ -1,9 +1,10 @@
 package jp.co.heartsoft.ikaqa.service;
 
 import com.google.gson.Gson;
+import jp.co.heartsoft.ikaqa.bean.SlackAnswerPayloadBean;
 import jp.co.heartsoft.ikaqa.bean.SlackDialogBean;
 import jp.co.heartsoft.ikaqa.bean.SlackDialogElementBean;
-import jp.co.heartsoft.ikaqa.bean.SlackDialogSubmissionBean;
+import jp.co.heartsoft.ikaqa.bean.SlackAnswerSubmissionBean;
 import okhttp3.*;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -49,14 +50,23 @@ public class IkaQAHttpRequestService {
         postHttpRequest(DIALOG_OPEN_URL, formParamMap);
     }
 
-    public void postAnswer(SlackDialogSubmissionBean dialogSubmission, String threadTs) throws IOException {
+    public void postAnswer(SlackAnswerSubmissionBean submission) throws IOException {
         System.out.println("postAnswer");
         Map<String, String> formParamMap = new HashMap<>();
         formParamMap.put("token", TOKEN);
         formParamMap.put("channel", CHANNEL_ID);
-        formParamMap.put("text", dialogSubmission.getAnswer());
-        formParamMap.put("username", dialogSubmission.getUserName()); //TODO 指定がない場合は USER_NAME
-        formParamMap.put("icon_emoji", dialogSubmission.getUserIcon());//TODO 指定がない場合は USER_ICON
+        formParamMap.put("text", submission.getAnswer());
+        formParamMap.put("username", submission.getUserName()); //TODO 指定がない場合は USER_NAME
+        formParamMap.put("icon_emoji", submission.getUserIcon());//TODO 指定がない場合は USER_ICON
+
+        String threadTs = null;
+        String targetLink = submission.getTargetLink();
+        String ts = targetLink.substring(targetLink.length() - 16);
+        if(ts != null){
+            threadTs = ts.substring(0, 10) + "." + ts.substring(ts.length() - 6);
+        }
+        System.out.println("threadTs:" + threadTs);
+
         formParamMap.put("thread_ts", threadTs);
         postHttpRequest(POST_MESSAGE_URL, formParamMap);
     }
