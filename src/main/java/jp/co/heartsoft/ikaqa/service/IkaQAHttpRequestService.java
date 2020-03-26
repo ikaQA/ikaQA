@@ -57,12 +57,14 @@ public class IkaQAHttpRequestService {
         formParamMap.put("channel", CHANNEL_ID);
         formParamMap.put("text", submission.getAnswer());
         String userName = submission.getUserName();
+        System.out.println("userName:" + userName);
         if(userName.isEmpty()){
             userName = USER_NAME;
         }
         formParamMap.put("username", userName);
 
         String userIcon = submission.getUserIcon();
+        System.out.println("userIcon:" + userIcon);
         if(userIcon.isEmpty()){
             userIcon = USER_ICON;
         }
